@@ -1,0 +1,42 @@
+.one{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background:#E0F7FA;
+    height:85vh;
+    padding:20px;
+}
+
+.d{
+    width:700px;
+}
+
+.one h1{
+    font-size:50px;
+    color:#1E293B;
+    margin-bottom:20px;
+}
+
+.one p{
+    color:#64748B;
+    font-size:20px;
+    line-height:1.8;
+    margin-bottom:35px;
+}
+
+.one button{
+    padding:15px 35px;
+    background:#0EA5E9;
+    color:white;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:18px;
+    transition:.3s;
+}
+
+.one button:hover{
+    background:#0284C7;
+    transform:translateY(-5px);
+}

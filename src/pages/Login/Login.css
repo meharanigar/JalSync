@@ -1,0 +1,198 @@
+/* Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* Login Page */
+.login-page{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0096c7,#00b4d8,#90e0ef);
+}
+
+/* Login Box */
+.login-box{
+    width:420px;
+    background:rgba(255,255,255,0.95);
+    padding:35px;
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,.2);
+}
+
+.login-box h1{
+    text-align:center;
+    color:#0077b6;
+    margin-bottom:8px;
+}
+
+.login-box p{
+    text-align:center;
+    color:#555;
+    margin-bottom:25px;
+}
+
+/* Input */
+.input-box{
+    margin-bottom:18px;
+}
+
+.input-box label{
+    display:block;
+    font-weight:600;
+    margin-bottom:6px;
+    color:#023e8a;
+}
+
+.input-box input{
+    width:100%;
+    padding:12px;
+    border:2px solid #90e0ef;
+    border-radius:10px;
+    font-size:15px;
+    outline:none;
+    transition:.3s;
+}
+
+.input-box input:focus{
+    border-color:#0077b6;
+    box-shadow:0 0 8px rgba(0,119,182,.3);
+}
+
+/* Remember */
+.remember{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin:15px 0;
+    color:#023e8a;
+}
+
+/* Buttons */
+.show-password-btn,
+.login-btn,
+.logout-btn{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+}
+
+.show-password-btn{
+    background:#48cae4;
+    color:white;
+    margin-bottom:12px;
+}
+
+.show-password-btn:hover{
+    background:#0096c7;
+}
+
+.login-btn{
+    background:#0077b6;
+    color:white;
+    font-weight:bold;
+}
+
+.login-btn:hover{
+    background:#023e8a;
+}
+
+.login-btn:disabled{
+    background:#8ecae6;
+    cursor:not-allowed;
+}
+
+/* Message */
+.message{
+    margin-top:15px;
+    text-align:center;
+    color:#d00000;
+    font-weight:bold;
+}
+
+/* Register */
+.bottom-text{
+    text-align:center;
+    margin-top:20px;
+}
+
+.bottom-text a{
+    color:#0077b6;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.bottom-text a:hover{
+    text-decoration:underline;
+}
+
+/* Notice Page */
+.notice-page{
+    min-height:100vh;
+    background:linear-gradient(to bottom,#caf0f8,#90e0ef,#48cae4);
+    padding:40px;
+}
+
+.welcome{
+    text-align:center;
+    color:#023e8a;
+    margin-bottom:25px;
+    font-size:30px;
+}
+
+/* Notice Board */
+.notice-board{
+    max-width:800px;
+    margin:auto;
+    background:white;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.notice-board h3{
+    text-align:center;
+    color:#0077b6;
+    margin-bottom:20px;
+}
+
+.notice-board ul{
+    list-style:none;
+}
+
+.notice-board li{
+    background:#e0f7fa;
+    border-left:6px solid #00b4d8;
+    margin:15px 0;
+    padding:15px;
+    border-radius:8px;
+    font-size:16px;
+    color:#023e8a;
+}
+
+/* Logout */
+.logout-container{
+    display:flex;
+    justify-content:center;
+    margin-top:30px;
+}
+
+.logout-btn{
+    width:220px;
+    background:#0077b6;
+    color:white;
+}
+
+.logout-btn:hover{
+    background:#023e8a;
+}

@@ -1,0 +1,36 @@
+.notice{
+    padding:70px 20px;
+    background:#F8FAFC;
+    text-align:center;
+}
+
+.notice h2{
+    color:#1E293B;
+    margin-bottom:35px;
+    font-size:36px;
+}
+
+.notice-card{
+    width:500px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.notice-card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 15px 25px rgba(0,0,0,.15);
+}
+
+.notice-card h3{
+    color:#0EA5E9;
+    margin-top:20px;
+}
+
+.notice-card p{
+    color:#64748B;
+    margin-top:8px;
+}
