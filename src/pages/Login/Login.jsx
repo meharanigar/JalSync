@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Login.css";
+// import {FaEye, FaEyeSlash} from "react-icons";
 // import { Link } from "react-router-dom";
 
 function Login() {
@@ -8,15 +9,24 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-//   const [remember, setRemember] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
   function handleLogin(e) {
     e.preventDefault();
 
-    if (studentName === "" || email === "" || password === "") {
-      setMessage("Please fill all the fields.");
+    if (studentName === "") {
+      setMessage("Please enter your name.");
+      return;
+    }
+
+    if (email === "") {
+      setMessage("Please enter your email.");
+      return;
+    }
+
+    if (password === "") {
+      setMessage("Please enter your password.");
       return;
     }
 
@@ -29,10 +39,10 @@ function Login() {
         email === "mehar@gmail.com" &&
         password === "234567890"
       ) {
-        setMessage("Login Successful ");
         setLogged(true);
+        setMessage("Login Successful!");
       } else {
-        setMessage("Invalid Name, Email or Password ");
+        setMessage("Invalid Name, Email or Password.");
       }
 
       setLoading(false);
@@ -45,7 +55,13 @@ function Login() {
     setEmail("");
     setPassword("");
     setShowPassword(false);
-    // setRemember(false);
+    setMessage("");
+  }
+
+  function handleClear() {
+    setStudentName("");
+    setEmail("");
+    setPassword("");
     setMessage("");
   }
 
@@ -70,10 +86,7 @@ function Login() {
           </div>
 
           <div className="logout-container">
-            <button
-              className="logout-btn"
-              onClick={handleLogout}
-            >
+            <button className="logout-btn" onClick={handleLogout}>
               Logout
             </button>
           </div>
@@ -117,16 +130,11 @@ function Login() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
-              </div>
 
-              {/* <div className="remember">
-                <input
-                  type="checkbox"
-                  checked={remember}
-                  onChange={() => setRemember(!remember)}
-                />
-                <label>Remember Me</label>
-              </div> */}
+                <p className="forgot-password">
+                  Forgot Password?
+                </p>
+              </div>
 
               <button
                 type="button"
@@ -144,15 +152,31 @@ function Login() {
                 {loading ? "Logging In..." : "Login"}
               </button>
 
+              <button
+                type="button"
+                className="clear-btn"
+                onClick={handleClear}
+              >
+                Clear
+              </button>
+
               {message && (
                 <p className="message">{message}</p>
               )}
             </form>
 
-            {/* <p className="bottom-text">
-              Don't have an account?
-              <Link to="/register"> Register</Link> */}
-            {/* </p> */}
+            <button
+              type="button"
+              className="register-btn"
+            >
+              Register
+            </button>
+
+            {/* If you have React Router, replace the above button with:
+            <Link to="/register" className="register-btn">
+              Register
+            </Link>
+            */}
           </div>
         </div>
       )}
