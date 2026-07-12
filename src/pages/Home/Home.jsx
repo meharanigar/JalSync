@@ -1,15 +1,15 @@
-import Navbar from "../../components/Navbar/Navbar";
+// import Navbar from "../../components/Navbar/Navbar";
 import Hero from "../../components/Hero/Hero";
 import FeatureCard from "../../components/FeatureCard/FeatureCard";
 import NoticeBoard from "../../components/NoticeBoard/NoticeBoard";
 import EmergencyAlert from "../../components/EmergencyAlert/EmergencyAlert";
-import Footer from "../../components/Footer/Footer";
+// import Footer from "../../components/Footer/Footer";
 
 function Home() {
     return (
         <>
 
-            <Navbar />
+            {/* <Navbar /> */}
 
             <Hero />
 
@@ -36,7 +36,7 @@ function Home() {
             </div>
             <NoticeBoard/>
             <EmergencyAlert/>
-            <Footer/>
+            {/* <Footer/> */}
 
         </>
     );

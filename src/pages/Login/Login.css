@@ -1,115 +1,267 @@
-/* Forgot Password */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ================= LOGIN PAGE ================= */
+
+.login-page{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0f172a,#0369a1,#06b6d4);
+    padding:40px;
+}
+
+/* ================= LOGIN BOX ================= */
+
+.login-box{
+    width:100%;
+    max-width:430px;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:20px;
+    padding:40px;
+    color:#fff;
+    box-shadow:0 20px 45px rgba(0,0,0,.25);
+    animation:fadeIn .8s ease;
+}
+
+.login-box h1{
+    text-align:center;
+    margin-bottom:10px;
+    font-size:34px;
+    font-weight:700;
+}
+
+.login-box p{
+    text-align:center;
+    color:#dbeafe;
+    margin-bottom:30px;
+}
+
+/* ================= INPUTS ================= */
+
+.input-box{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:18px;
+}
+
+.input-box label{
+    margin-bottom:8px;
+    font-weight:500;
+}
+
+.input-box input{
+    padding:14px 16px;
+    border:none;
+    border-radius:10px;
+    background:rgba(255,255,255,.9);
+    color:#0f172a;
+    font-size:15px;
+    outline:none;
+    transition:.3s;
+}
+
+.input-box input:focus{
+    background:#fff;
+    transform:scale(1.02);
+    box-shadow:0 0 12px rgba(255,255,255,.5);
+}
+
+.input-box input::placeholder{
+    color:#64748b;
+}
+
+/* ================= FORGOT PASSWORD ================= */
+
 .forgot-password{
-    text-align:right;
     margin-top:10px;
-    color:#0288d1;
+    text-align:right;
     font-size:14px;
+    color:#dbeafe;
     cursor:pointer;
-    transition:0.3s;
+    transition:.3s;
 }
 
 .forgot-password:hover{
-    color:#01579b;
-    text-decoration:underline;
+    color:#fff;
 }
 
-/* Show Password Button */
-.show-password-btn{
+/* ================= BUTTONS ================= */
+
+.show-password-btn,
+.login-btn,
+.clear-btn,
+.register-btn{
     width:100%;
+    padding:14px;
     margin-top:15px;
-    padding:12px;
     border:none;
     border-radius:10px;
-    background:linear-gradient(135deg,#4fc3f7,#29b6f6);
-    color:white;
-    font-size:15px;
-    font-weight:bold;
     cursor:pointer;
-    transition:0.3s;
-    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    font-size:16px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.show-password-btn{
+    background:#ffffff;
+    color:#0369a1;
 }
 
 .show-password-btn:hover{
-    transform:translateY(-2px);
-    background:linear-gradient(135deg,#29b6f6,#0288d1);
+    background:#dbeafe;
 }
 
-/* Login Button */
 .login-btn{
-    width:100%;
-    margin-top:15px;
-    padding:13px;
-    border:none;
-    border-radius:10px;
-    background:linear-gradient(135deg,#00c6ff,#0072ff);
+    background:linear-gradient(90deg,#0284c7,#06b6d4);
     color:white;
-    font-size:17px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
-    box-shadow:0 6px 15px rgba(0,114,255,0.35);
 }
 
 .login-btn:hover{
-    transform:translateY(-2px);
-    background:linear-gradient(135deg,#0072ff,#0056d6);
+    transform:translateY(-3px);
+    box-shadow:0 10px 25px rgba(6,182,212,.4);
 }
 
-.login-btn:disabled{
-    background:#90caf9;
-    cursor:not-allowed;
-    box-shadow:none;
-}
-
-/* Clear Button */
 .clear-btn{
-    width:100%;
-    margin-top:12px;
-    padding:13px;
-    border:none;
-    border-radius:10px;
-    background:linear-gradient(135deg,#eceff1,#cfd8dc);
-    color:#37474f;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
+    background:#ef4444;
+    color:white;
 }
 
 .clear-btn:hover{
-    background:linear-gradient(135deg,#cfd8dc,#b0bec5);
-    transform:translateY(-2px);
+    background:#dc2626;
 }
 
-/* Register Button */
 .register-btn{
-    width:100%;
-    margin-top:18px;
-    padding:13px;
-    border:none;
-    border-radius:10px;
-    background:linear-gradient(135deg,#26c6da,#0097a7);
+    background:#22c55e;
     color:white;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
-    box-shadow:0 6px 15px rgba(0,151,167,0.35);
 }
 
 .register-btn:hover{
-    transform:translateY(-2px);
-    background:linear-gradient(135deg,#00acc1,#00838f);
+    background:#16a34a;
 }
 
-/* Message */
+/* ================= MESSAGE ================= */
+
 .message{
-    margin-top:15px;
+    margin-top:18px;
     text-align:center;
-    font-weight:bold;
-    color:#1565c0;
-    background:#e3f2fd;
-    padding:10px;
+    font-weight:600;
+    color:#fef08a;
+}
+
+/* ================= NOTICE PAGE ================= */
+
+.notice-page{
+    min-height:100vh;
+    background:linear-gradient(to bottom,#ecfeff,#ffffff);
+    padding:60px 10%;
+}
+
+.welcome{
+    text-align:center;
+    color:#0369a1;
+    font-size:36px;
+    margin-bottom:40px;
+}
+
+.notice-board{
+    max-width:750px;
+    margin:auto;
+    background:white;
+    border-radius:20px;
+    padding:35px;
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+.notice-board h3{
+    color:#0284c7;
+    margin-bottom:25px;
+    text-align:center;
+}
+
+.notice-board ul{
+    list-style:none;
+}
+
+.notice-board li{
+    background:#f8fafc;
+    padding:16px;
+    margin-bottom:15px;
+    border-left:5px solid #06b6d4;
     border-radius:8px;
-    border-left:5px solid #2196f3;
+    transition:.3s;
+}
+
+.notice-board li:hover{
+    transform:translateX(8px);
+    background:#e0f2fe;
+}
+
+.logout-container{
+    text-align:center;
+    margin-top:35px;
+}
+
+.logout-btn{
+    padding:14px 40px;
+    border:none;
+    border-radius:10px;
+    background:#ef4444;
+    color:white;
+    font-size:17px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.logout-btn:hover{
+    background:#dc2626;
+    transform:scale(1.05);
+}
+
+/* ================= ANIMATION ================= */
+
+@keyframes fadeIn{
+
+from{
+    opacity:0;
+    transform:translateY(40px);
+}
+
+to{
+    opacity:1;
+    transform:translateY(0);
+}
+
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+
+.login-box{
+    padding:30px;
+}
+
+.login-box h1{
+    font-size:28px;
+}
+
+.welcome{
+    font-size:28px;
+}
+
+.notice-page{
+    padding:40px 20px;
+}
+
 }
