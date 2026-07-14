@@ -1,133 +1,192 @@
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Register.css";
-import { Link } from "react-router-dom";
 
 function Register() {
-    return (
+  const navigate = useNavigate();
 
-        <div className="register-page">
+  const [fullName, setFullName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const [village, setVillage] = useState("");
+  const [ward, setWard] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [terms, setTerms] = useState(false);
 
-            <div className="register-box">
+  function handleRegister(e) {
+    e.preventDefault();
 
-                <h1>Create Your Account</h1>
+    if (
+      !fullName ||
+      !phone ||
+      !email ||
+      !village ||
+      !ward ||
+      !password ||
+      !confirmPassword
+    ) {
+      alert("Please fill all the fields.");
+      return;
+    }
 
-                <p>Register to receive water supply updates from JalSync.</p>
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
 
-                <form>
+    if (!terms) {
+      alert("Please accept the Terms & Conditions.");
+      return;
+    }
 
-                    <div className="input-box">
+    const clients =
+      JSON.parse(localStorage.getItem("clients")) || [];
 
-                        <label>Full Name</label>
+    const newClient = {
+      id: Date.now(),
+      fullName,
+      phone,
+      email,
+      village,
+      ward,
+      password,
+    };
 
-                        <input
-                            type="text"
-                            placeholder="Enter your full name"
-                        />
+    clients.push(newClient);
 
-                    </div>
-
-                    <div className="input-box">
-
-                        <label>Mobile Number</label>
-
-                        <input
-                            type="text"
-                            placeholder="Enter your mobile number"
-                        />
-
-                    </div>
-
-                    <div className="input-box">
-
-                        <label>Email Address</label>
-
-                        <input
-                            type="email"
-                            placeholder="Enter your email"
-                        />
-
-                    </div>
-
-                    <div className="input-box">
-
-                        <label>Village Name</label>
-
-                        <input
-                            type="text"
-                            placeholder="Enter your village name"
-                        />
-
-                    </div>
-
-                    <div className="input-box">
-
-                        <label>Area / Ward Number</label>
-
-                        <input
-                            type="text"
-                            placeholder="Enter your ward number"
-                        />
-
-                    </div>
-
-                    <div className="input-box">
-
-                        <label>Password</label>
-
-                        <input
-                            type="password"
-                            placeholder="Create password"
-                        />
-
-                    </div>
-
-                    <div className="input-box">
-
-                        <label>Confirm Password</label>
-
-                        <input
-                            type="password"
-                            placeholder="Confirm password"
-                        />
-
-                    </div>
-
-                    <div className="terms">
-
-                        <input type="checkbox"/>
-
-                        <label>I agree to the Terms & Conditions</label>
-
-                    </div>
-
-                    <div className="btns">
-
-                        <button type="submit">
-                            Register
-                        </button>
-
-                        <button type="reset">
-                            Reset
-                        </button>
-
-                    </div>
-
-                </form>
-
-                <p className="bottom-text">
-
-                    Already have an account?
-
-                    <Link to="/login">
-                        Login
-                    </Link>
-
-                </p>
-
-            </div>
-
-        </div>
-
+    localStorage.setItem(
+      "clients",
+      JSON.stringify(clients)
     );
+
+    alert("Registration Successful!");
+
+    setFullName("");
+    setPhone("");
+    setEmail("");
+    setVillage("");
+    setWard("");
+    setPassword("");
+    setConfirmPassword("");
+    setTerms(false);
+
+    navigate("/clienttable");
+  }
+
+  return (
+    <div className="register-page">
+      <div className="register-box">
+        <h1>Create Your Account</h1>
+
+        <p>
+          Register to receive water supply updates from JalSync.
+        </p>
+
+        <form onSubmit={handleRegister}>
+          <div className="input-box">
+            <label>Full Name</label>
+
+            <input
+              type="text"
+              placeholder="Enter your full name"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+            />
+          </div>
+
+          <div className="input-box">
+            <label>Mobile Number</label>
+
+            <input
+              type="text"
+              placeholder="Enter your mobile number"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </div>
+
+          <div className="input-box">
+            <label>Email Address</label>
+
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
+          <div className="input-box">
+            <label>Village Name</label>
+
+            <input
+              type="text"
+              placeholder="Enter your village name"
+              value={village}
+              onChange={(e) => setVillage(e.target.value)}
+            />
+          </div>
+
+          <div className="input-box">
+            <label>Area / Ward Number</label>
+
+            <input
+              type="text"
+              placeholder="Enter your ward number"
+              value={ward}
+              onChange={(e) => setWard(e.target.value)}
+            />
+          </div>
+
+          <div className="input-box">
+            <label>Password</label>
+
+            <input
+              type="password"
+              placeholder="Create password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+
+          <div className="input-box">
+            <label>Confirm Password</label>
+
+            <input
+              type="password"
+              placeholder="Confirm password"
+              value={confirmPassword}
+              onChange={(e) =>
+                setConfirmPassword(e.target.value)
+              }
+            />
+          </div>
+
+          <div className="terms">
+            <input
+              type="checkbox"
+              checked={terms}
+              onChange={(e) => setTerms(e.target.checked)}
+            />
+
+            <label>I agree to the Terms & Conditions</label>
+          </div>
+
+          <div className="btns">
+            <button type="submit">Register</button>
+
+            <button type="reset">Reset</button>
+          </div>
+        </form>
+
+        <p className="bottom-text">
+          Already have an account?{" "}
+          <Link to="/login">Login</Link>
+        </p>
+      </div>
+    </div>
+  );
 }
 
 export default Register;

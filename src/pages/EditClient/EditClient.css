@@ -1,0 +1,73 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.edit-client {
+    min-height: 100vh;
+    background: #f4f8fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.edit-client form {
+    width: 100%;
+    max-width: 500px;
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.edit-client h2 {
+    text-align:start;
+    color: #0f766e;
+    margin-bottom: 25px;
+    font-size: 30px;
+}
+
+.edit-client input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 18px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.edit-client input:focus {
+    border-color: #0f766e;
+    box-shadow: 0 0 5px rgba(15, 118, 110, 0.3);
+}
+
+.edit-client button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: #0f766e;
+    color: white;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.edit-client button:hover {
+    background: #0d9488;
+}
+
+@media (max-width: 600px) {
+    .edit-client form {
+        padding: 25px;
+    }
+
+    .edit-client h2 {
+        font-size: 24px;
+    }
+}

@@ -21,6 +21,22 @@ function Navbar() {
                     <Link to="/contact">Contact</Link>
                 </li>
 
+                <li>
+                    <Link to="/dashboard">Dashboard</Link>
+                </li>
+
+                <li>
+                    <Link to="/NoticeBoard">NoticeBoard</Link>
+                </li>
+
+                <li>
+                    <Link to="/details/1">Details</Link>
+                </li>
+
+                <li>
+                    <Link to="/clienttable">clientTable</Link>
+                </li>
+
             </ul>
 
             <div>
@@ -32,6 +48,11 @@ function Navbar() {
                 <Link to="/register">
                     <button>Register</button>
                 </Link>
+
+                {/* <li>
+                    <Link to="/noticeboard">
+                    Notice Board</Link>
+                </li> */}
 
             </div>
 

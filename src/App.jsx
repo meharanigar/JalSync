@@ -10,6 +10,10 @@ import Contact from "./pages/Contact/Contact";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Details from "./pages/Details/Details";
 import NotFound from "./NotFound/NotFound";
+import Hero from "./components/Hero/Hero";
+import ClientTable from "./components/clientTable/clientTable";
+import EditClient from "./pages/EditClient/EditClient";
+import NoticeBoard from "./components/NoticeBoard/NoticeBoard";
 
 function App() {
   return (
@@ -33,6 +37,14 @@ function App() {
           <Route path="details/:id" element={<Details />} />
 
           <Route path="*" element={<NotFound/>}/>
+
+          <Route path="clienttable" element={<ClientTable/>}/>
+
+          <Route path="client/edit/:id" element={<EditClient/>}/>
+
+          <Route path="noticeboard" element={<NoticeBoard/>}/>
+          
+          {/* <Route path="/" element={<Hero/>}/> */}
 
         </Route>
 
