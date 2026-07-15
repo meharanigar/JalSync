@@ -103,6 +103,7 @@ function About() {
           aims to create smarter cities by improving communication between
           citizens and water authorities while promoting efficient and
           sustainable water resource management.
+          
         </p>
       </section>
 
