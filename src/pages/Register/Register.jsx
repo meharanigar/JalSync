@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Register.css";
+import api from "../../api/api";
 
 function Register() {
   const navigate = useNavigate();
@@ -14,9 +15,10 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [terms, setTerms] = useState(false);
 
-  function handleRegister(e) {
+  async function handleRegister(e) {
     e.preventDefault();
 
+    // Validation
     if (
       !fullName ||
       !phone ||
@@ -40,38 +42,38 @@ function Register() {
       return;
     }
 
-    const clients =
-      JSON.parse(localStorage.getItem("clients")) || [];
+    try {
+      const res = await api.post("/clients", {
+        fullName,
+        phone,
+        email,
+        village,
+        ward,
+        password,
+      });
 
-    const newClient = {
-      id: Date.now(),
-      fullName,
-      phone,
-      email,
-      village,
-      ward,
-      password,
-    };
+      alert(res.data.message || "Registration Successful!");
 
-    clients.push(newClient);
+      // Clear form
+      setFullName("");
+      setPhone("");
+      setEmail("");
+      setVillage("");
+      setWard("");
+      setPassword("");
+      setConfirmPassword("");
+      setTerms(false);
 
-    localStorage.setItem(
-      "clients",
-      JSON.stringify(clients)
-    );
+      // Go to Client Table
+      navigate("/clienttable");
+    } catch (error) {
+      console.error(error);
 
-    alert("Registration Successful!");
-
-    setFullName("");
-    setPhone("");
-    setEmail("");
-    setVillage("");
-    setWard("");
-    setPassword("");
-    setConfirmPassword("");
-    setTerms(false);
-
-    navigate("/clienttable");
+      alert(
+        error.response?.data?.message ||
+          "Registration Failed. Please try again."
+      );
+    }
   }
 
   return (
@@ -86,7 +88,6 @@ function Register() {
         <form onSubmit={handleRegister}>
           <div className="input-box">
             <label>Full Name</label>
-
             <input
               type="text"
               placeholder="Enter your full name"
@@ -97,7 +98,6 @@ function Register() {
 
           <div className="input-box">
             <label>Mobile Number</label>
-
             <input
               type="text"
               placeholder="Enter your mobile number"
@@ -108,7 +108,6 @@ function Register() {
 
           <div className="input-box">
             <label>Email Address</label>
-
             <input
               type="email"
               placeholder="Enter your email"
@@ -119,7 +118,6 @@ function Register() {
 
           <div className="input-box">
             <label>Village Name</label>
-
             <input
               type="text"
               placeholder="Enter your village name"
@@ -130,7 +128,6 @@ function Register() {
 
           <div className="input-box">
             <label>Area / Ward Number</label>
-
             <input
               type="text"
               placeholder="Enter your ward number"
@@ -141,7 +138,6 @@ function Register() {
 
           <div className="input-box">
             <label>Password</label>
-
             <input
               type="password"
               placeholder="Create password"
@@ -152,14 +148,11 @@ function Register() {
 
           <div className="input-box">
             <label>Confirm Password</label>
-
             <input
               type="password"
               placeholder="Confirm password"
               value={confirmPassword}
-              onChange={(e) =>
-                setConfirmPassword(e.target.value)
-              }
+              onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
 
@@ -169,13 +162,11 @@ function Register() {
               checked={terms}
               onChange={(e) => setTerms(e.target.checked)}
             />
-
             <label>I agree to the Terms & Conditions</label>
           </div>
 
           <div className="btns">
             <button type="submit">Register</button>
-
             <button type="reset">Reset</button>
           </div>
         </form>
