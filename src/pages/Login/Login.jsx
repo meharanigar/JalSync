@@ -1,69 +1,76 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../../api/api";
 import "./Login.css";
 
 function Login() {
   const navigate = useNavigate();
 
-  const [studentName, setStudentName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
-  function handleLogin(e) {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (studentName === "") {
-      setMessage("Please enter your name.");
-      return;
-    }
-
-    if (email === "") {
+    if (!email) {
       setMessage("Please enter your email.");
       return;
     }
 
-    if (password === "") {
+    if (!password) {
       setMessage("Please enter your password.");
       return;
     }
 
-    setLoading(true);
-    setMessage("");
+    try {
+      setLoading(true);
+      setMessage("");
 
-    setTimeout(() => {
-      if (
-        studentName.toLowerCase() === "mehar" &&
-        email === "mehar@gmail.com" &&
-        password === "234567890"
-      ) {
-        // Save login details
+      const res = await api.post("/clients/login", {
+        email,
+        password,
+      });
+
+      if (res.data.success) {
+        // Save JWT Token
+        localStorage.setItem("token", res.data.token);
+
+        // Save Login Status
         localStorage.setItem("isLogged", "true");
 
+        // Save User Details
         localStorage.setItem(
           "loggedInUser",
-          JSON.stringify({
-            studentName,
-            email,
-          })
+          JSON.stringify(res.data.client)
         );
+
+        // Save User Role
+        localStorage.setItem("role", res.data.client.role);
 
         setMessage("Login Successful!");
 
-        // Redirect to Dashboard
-        navigate("/");
-      } else {
-        setMessage("Invalid Name, Email or Password.");
+        // Redirect based on role
+        setTimeout(() => {
+          if (res.data.client.role === "admin") {
+            navigate("/clienttable");
+          } else {
+            navigate("/dashboard");
+          }
+        }, 1000);
       }
-
+    } catch (err) {
+      setMessage(
+        err.response?.data?.message || "Login Failed"
+      );
+    } finally {
       setLoading(false);
-    }, 2000);
-  }
+    }
+  };
 
   function handleClear() {
-    setStudentName("");
     setEmail("");
     setPassword("");
     setMessage("");
@@ -77,17 +84,6 @@ function Login() {
         <p>Login to continue using JalSync</p>
 
         <form onSubmit={handleLogin}>
-          <div className="input-box">
-            <label>Name</label>
-
-            <input
-              type="text"
-              placeholder="Enter your name"
-              value={studentName}
-              onChange={(e) => setStudentName(e.target.value)}
-            />
-          </div>
-
           <div className="input-box">
             <label>Email Address</label>
 

@@ -1,5 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import ProtectedRoute from "./components/ProtectedRoute";
+
 import Layout from "./components/Layout/Layout";
 
 import Home from "./pages/Home/Home";
@@ -24,7 +26,9 @@ function App() {
 
           <Route index element={<Home />} />
 
-          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="dashboard" element={<ProtectedRoute>
+            <Dashboard />
+            </ProtectedRoute>} />
 
           <Route path="login" element={<Login />} />
 
@@ -34,15 +38,23 @@ function App() {
 
           <Route path="contact" element={<Contact />} />
 
-          <Route path="details/:id" element={<Details />} />
+          <Route path="details/:id" element={<ProtectedRoute>
+            <Details />
+          </ProtectedRoute>} />
 
           <Route path="*" element={<NotFound/>}/>
 
-          <Route path="clienttable" element={<ClientTable/>}/>
+          <Route path="clienttable" element={<ProtectedRoute>
+            <ClientTable/>
+          </ProtectedRoute>}/>
 
-          <Route path="client/edit/:id" element={<EditClient/>}/>
+          <Route path="client/edit/:id" element={<ProtectedRoute>
+            <EditClient/>
+          </ProtectedRoute>}/>
 
-          <Route path="noticeboard" element={<NoticeBoard/>}/>
+          <Route path="noticeboard" element={<ProtectedRoute>
+            <NoticeBoard/>
+          </ProtectedRoute>}/>
           
           {/* <Route path="/" element={<Hero/>}/> */}
 

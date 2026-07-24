@@ -1,7 +1,29 @@
 import "./Navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
+
+    const navigate = useNavigate();
+
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+
+    const user = JSON.parse(
+        localStorage.getItem("loggedInUser")
+    );
+
+    const handleLogout = () => {
+
+        localStorage.removeItem("token");
+        localStorage.removeItem("role");
+        localStorage.removeItem("loggedInUser");
+        localStorage.removeItem("isLogged");
+
+        alert("Logged out successfully");
+
+        navigate("/login");
+    };
+
     return (
         <nav>
 
@@ -21,38 +43,62 @@ function Navbar() {
                     <Link to="/contact">Contact</Link>
                 </li>
 
-                <li>
-                    <Link to="/dashboard">Dashboard</Link>
-                </li>
+                {token && (
+                    <>
+                        <li>
+                            <Link to="/dashboard">Dashboard</Link>
+                        </li>
 
-                <li>
-                    <Link to="/NoticeBoard">NoticeBoard</Link>
-                </li>
+                        <li>
+                            <Link to="/NoticeBoard">NoticeBoard</Link>
+                        </li>
 
-                <li>
-                    <Link to="/details/1">Details</Link>
-                </li>
+                        <li>
+                            <Link to="/details/1">Details</Link>
+                        </li>
+                    </>
+                )}
 
-                <li>
-                    <Link to="/clienttable">clientTable</Link>
-                </li>
+                {role === "admin" && (
+                    <li>
+                        <Link to="/clienttable">
+                            ClientTable
+                        </Link>
+                    </li>
+                )}
 
             </ul>
 
             <div>
 
-                <Link to="/login">
-                    <button>Login</button>
-                </Link>
+                {!token ? (
+                    <>
+                        <Link to="/login">
+                            <button>Login</button>
+                        </Link>
 
-                <Link to="/register">
-                    <button>Register</button>
-                </Link>
+                        <Link to="/register">
+                            <button>Register</button>
+                        </Link>
+                    </>
+                ) : (
+                    <>
+                        <span
+                            style={{
+                                marginRight: "15px",
+                                fontWeight: "bold",
+                            }}
+                        >
+                            Welcome,
+                            {" "}
+                            {user?.fullName}
+                        </span>
 
-                {/* <li>
-                    <Link to="/noticeboard">
-                    Notice Board</Link>
-                </li> */}
+                        <button onClick={handleLogout}>
+                            Logout
+                        </button>
+                    </>
+                )}
 
             </div>
 

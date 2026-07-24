@@ -1,60 +1,67 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import api from "../../api/api";
 import "./EditClient.css";
 
 function EditClient() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Get all clients from localStorage
-  const clients = JSON.parse(localStorage.getItem("clients")) || [];
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [village, setVillage] = useState("");
+  const [ward, setWard] = useState("");
+  const [profileImage, setProfileImage] = useState(null);
+  const [preview, setPreview] = useState("");
 
-  // Find selected client
-  const client = clients.find((c) => c.id === Number(id));
+  useEffect(() => {
+    fetchClient();
+  }, []);
 
-  if (!client) {
-    return <h2>No Client Found!</h2>;
-  }
+  const fetchClient = async () => {
+    try {
+      const res = await api.get(`/clients/${id}`);
 
-  // Form State
-  const [fullName, setFullName] = useState(client.fullName || "");
-  const [email, setEmail] = useState(client.email || "");
-  const [phone, setPhone] = useState(client.phone || "");
-  const [village, setVillage] = useState(client.village || "");
-  const [ward, setWard] = useState(client.ward || "");
+      const client = res.data.client;
 
-  function updateClient(e) {
+      setFullName(client.fullName);
+      setEmail(client.email);
+      setPhone(client.phone);
+      setVillage(client.village);
+      setWard(client.ward);
+    } catch (error) {
+      console.log(error);
+      alert("Client not found");
+    }
+  };
+
+  const updateClient = async (e) => {
     e.preventDefault();
 
-    const updatedClients = clients.map((c) =>
-      c.id === Number(id)
-        ? {
-            ...c,
-            fullName,
-            email,
-            phone,
-            village,
-            ward,
-          }
-        : c
-    );
+    try {
+      await api.put(`/clients/${id}`, {
+        fullName,
+        email,
+        phone,
+        village,
+        ward,
+      });
 
-    localStorage.setItem(
-      "clients",
-      JSON.stringify(updatedClients)
-    );
+      alert("Client Updated Successfully!");
 
-    alert("Client Updated Successfully!");
-
-    navigate("/clienttable");
-  }
+      navigate("/clienttable");
+    } catch (error) {
+      console.log(error);
+      alert("Update Failed");
+    }
+  };
 
   return (
     <div className="edit-client">
       <h2>Edit Client</h2>
 
       <form onSubmit={updateClient}>
-
         <input
           type="text"
           placeholder="Full Name"
@@ -93,7 +100,6 @@ function EditClient() {
         <button type="submit">
           Update Client
         </button>
-
       </form>
     </div>
   );

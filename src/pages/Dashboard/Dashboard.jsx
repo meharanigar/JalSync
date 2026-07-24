@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import FeatureCard from "../../components/FeatureCard/FeatureCard";
+import NoticeBoard from "../../components/NoticeBoard/NoticeBoard";
+import EmergencyAlert from "../../components/EmergencyAlert/EmergencyAlert";
 import "./Dashboard.css";
 
 function Dashboard() {
-
   const navigate = useNavigate();
 
   const [waterData, setWaterData] = useState([]);
@@ -11,30 +13,21 @@ function Dashboard() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-
     fetch("/waterData.json")
       .then((response) => {
-
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
-
         return response.json();
-
       })
       .then((data) => {
-
         setWaterData(data);
         setLoading(false);
-
       })
       .catch(() => {
-
         setError("Something went wrong. Please try again later.");
         setLoading(false);
-
       });
-
   }, []);
 
   if (loading) {
@@ -50,12 +43,37 @@ function Dashboard() {
 
       <h1>💧 JalSync Dashboard</h1>
 
+      {/* Feature Cards */}
+      <div className="feature-section">
+        <FeatureCard
+          icon="💧"
+          title="Water Schedule"
+          description="Know today's water supply timings."
+        />
+
+        <FeatureCard
+          icon="🚰"
+          title="Water Quality"
+          description="Check whether water is safe to drink."
+        />
+
+        <FeatureCard
+          icon="🔔"
+          title="Notifications"
+          description="Receive instant water supply updates."
+        />
+      </div>
+
+      {/* Notice Board */}
+      <NoticeBoard />
+
+      {/* Emergency Alerts */}
+      <EmergencyAlert />
+
+      {/* Dashboard Cards */}
       <div className="card-container">
-
         {waterData.map((item) => (
-
           <div className="card" key={item.id}>
-
             <h2>{item.area}</h2>
 
             <p>
@@ -78,11 +96,8 @@ function Dashboard() {
             >
               View Details
             </button>
-
           </div>
-
         ))}
-
       </div>
 
     </div>

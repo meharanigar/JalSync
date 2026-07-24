@@ -18,7 +18,6 @@ function Register() {
   async function handleRegister(e) {
     e.preventDefault();
 
-    // Validation
     if (
       !fullName ||
       !phone ||
@@ -52,9 +51,8 @@ function Register() {
         password,
       });
 
-      alert(res.data.message || "Registration Successful!");
+      alert(res.data.message);
 
-      // Clear form
       setFullName("");
       setPhone("");
       setEmail("");
@@ -64,14 +62,14 @@ function Register() {
       setConfirmPassword("");
       setTerms(false);
 
-      // Go to Client Table
       navigate("/clienttable");
+
     } catch (error) {
       console.error(error);
 
       alert(
         error.response?.data?.message ||
-          "Registration Failed. Please try again."
+        "Registration Failed"
       );
     }
   }
@@ -79,6 +77,7 @@ function Register() {
   return (
     <div className="register-page">
       <div className="register-box">
+
         <h1>Create Your Account</h1>
 
         <p>
@@ -86,6 +85,7 @@ function Register() {
         </p>
 
         <form onSubmit={handleRegister}>
+
           <div className="input-box">
             <label>Full Name</label>
             <input
@@ -167,14 +167,31 @@ function Register() {
 
           <div className="btns">
             <button type="submit">Register</button>
-            <button type="reset">Reset</button>
+
+            <button
+              type="button"
+              onClick={() => {
+                setFullName("");
+                setPhone("");
+                setEmail("");
+                setVillage("");
+                setWard("");
+                setPassword("");
+                setConfirmPassword("");
+                setTerms(false);
+              }}
+            >
+              Reset
+            </button>
           </div>
+
         </form>
 
         <p className="bottom-text">
           Already have an account?{" "}
           <Link to="/login">Login</Link>
         </p>
+
       </div>
     </div>
   );

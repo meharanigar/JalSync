@@ -1,12 +1,13 @@
 import "./Hero.css";
+import { useNavigate } from "react-router-dom";
 
 function Hero() {
+  const navigate = useNavigate();
   return (
     <section className="one">
       <div className="d">
         <h1>
-          Smart Water Supply & Water Quality
-          Information System
+         JalSync – Smart Water Supply Management System. 💧
         </h1>
 
         <p>
@@ -15,7 +16,9 @@ function Hero() {
           Receive instant notifications.
         </p>
 
-        <button>Get Started</button>
+   <button onClick={() => navigate("/dashboard")}>
+          Get Started
+        </button>
       </div>
     </section>
   );
