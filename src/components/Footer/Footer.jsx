@@ -2,7 +2,6 @@ import "./Footer.css";
 
 function Footer() {
     return (
-
         <footer className="footer">
 
             <div className="footer-container">
@@ -13,38 +12,33 @@ function Footer() {
 
                     <p>
                         Smart Water Supply & Water Quality
-                        Information System.
+                        Information System that helps citizens
+                        receive timely water supply schedules,
+                        quality updates, and emergency alerts.
                     </p>
 
                 </div>
 
                 <div className="footer-section">
 
-                    <h3>Quick Links</h3>
+                    <h3>Our Services</h3>
 
                     <ul>
-
-                        <li>Home</li>
-
-                        <li>About</li>
-
-                        <li>Contact</li>
-
-                        <li>Login</li>
-
+                        <li>💧 Water Supply Updates</li>
+                        <li>🧪 Water Quality Reports</li>
+                        <li>🚨 Emergency Alerts</li>
+                        <li>📢 Public Notices</li>
                     </ul>
 
                 </div>
 
                 <div className="footer-section">
 
-                    <h3>Contact</h3>
+                    <h3>Contact Us</h3>
 
-                    <p>Email : support@jalsync.com</p>
-
-                    <p>Phone : +91 7095882080</p>
-
-                    <p>Location : Guntur, Andhra Pradesh</p>
+                    <p>📧 support@jalsync.com</p>
+                    <p>📞 +91 7095882080</p>
+                    <p>📍 Guntur, Andhra Pradesh</p>
 
                 </div>
 
@@ -61,7 +55,6 @@ function Footer() {
             </div>
 
         </footer>
-
     );
 }
 
